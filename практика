@@ -1,0 +1,112 @@
+using System;
+using System.Collections.Generic;
+
+namespace bue
+{
+    public class Country
+    {
+        public string NameCoun;
+        public string Stolit;
+        public Country(string NameCoun, string Stolit)
+        {
+            this.NameCoun = NameCoun;
+            this.Stolit = Stolit;
+        }
+        public Country()
+        { }
+
+    }
+    public class Hotel
+    {
+        public string Name;
+        public int Star;
+        public string Description;
+        public Country NameCoun;
+        public Hotel(string Name, int Star, string Description, Country NameCoun)
+        {
+            this.Name = Name;
+            this.Star = Star;
+            this.Description = Description;
+            this.NameCoun = NameCoun;
+        }
+        public Hotel()
+        { }
+    }
+
+    class Program
+    {
+        static void Meny() 
+        {
+            Console.WriteLine("Что вы хотите сделать:");
+            Console.WriteLine("1-Добавить страну");
+            Console.WriteLine("2-Добавить отель");
+            Console.WriteLine("3-Bывести все страны");
+            Console.WriteLine("4-Вывести все отели");
+            Console.WriteLine("5-Выйти из программы");
+           
+        }
+        static void Main()
+        {
+            Country country1 = new Country("Россия", "Mocква");
+            Country country2 = new Country("ЮАР", "Претория");
+            Country country3 = new Country("Индия", "Дели");
+            Hotel hotel1 = new Hotel("регина", 2, "Великолепное место ", country1);
+            List<Country> CountryList = new List<Country>() { country1, country2, country3 };
+            List<Hotel> HotelList = new List<Hotel>() { hotel1 };
+            Meny();
+            int n = Convert.ToInt32(Console.ReadLine());
+            int choh = 3;
+            while (n == 1 | n == 2 | n == 3 | n == 4)
+            {
+                while (n == 1)
+                {
+                    Console.WriteLine("Введите страну и столицу");
+                    Country countryd = new Country(Console.ReadLine(), Console.ReadLine());
+                    CountryList.Add(countryd);
+                    Meny();
+                    n = Convert.ToInt32(Console.ReadLine());
+                    choh++;
+                }
+                while (n == 2)
+                {
+                    Console.WriteLine("Введите страну, где находиться отель ");
+                    Country countryN = new Country(Console.ReadLine(), Console.ReadLine());
+                    Console.WriteLine("Введите данные об отеле ");
+                    Hotel hoteld = new Hotel(Console.ReadLine(), Convert.ToInt32(Console.ReadLine()), Console.ReadLine(),countryN);
+                    HotelList.Add(hoteld);
+                    Meny();
+                    n = Convert.ToInt32(Console.ReadLine());
+                }
+                while (n == 3)
+                {
+                    foreach (Country p in CountryList)
+                    {
+                        Console.Write(p.NameCoun + " ");
+                        Console.WriteLine(p.Stolit);
+                    }
+                    Meny();
+                    n = Convert.ToInt32(Console.ReadLine());
+                }
+                while (n == 4)
+                {
+                    foreach (Hotel p in HotelList)
+                    {
+                        Console.Write(p.Name + " ");
+                        Console.Write(p.Star + " ");
+                        Console.Write(p.Description + " ");
+                        Console.WriteLine(p.NameCoun.NameCoun + " ");
+
+                    }
+                    Meny(); 
+                    n = Convert.ToInt32(Console.ReadLine());
+
+                }
+            }
+            if(n == 5)
+            {
+                Console.WriteLine("До свидания :)");
+            }
+        }
+     }
+    
+ }
